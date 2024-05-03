@@ -31,6 +31,11 @@ adminFunc() {
   "${PIKONEK_CORE_ADMIN_SCRIPT_DIR}"/venv/bin/python3.7 "${PIKONEK_CORE_ADMIN_SCRIPT_DIR}"/pikonekcli.py "${@:2}"
 }
 
+installPackage() {
+  shift
+  exec "${PIKONEK_SCRIPT_DIR}"/package.sh "$@"
+}
+
 
 updateCheckFunc() {
   "${PIKONEK_SCRIPT_DIR}"/updatecheck.sh "$@"
@@ -43,11 +48,14 @@ Example: 'pikonek -a -h'
 Add '-h' after specific commands for more information on usage
 
 Options:
-  -a, admin           Pikonek interface options
+  -a,            Pikonek interface options
                         Add '-h' for more info on Pikonek Interface usage
   -h, --help, help    Show this help dialog
-  -up, updatePikonek  Update Pikonek subsystems
+  -up,                Update Pikonek subsystems
                         Add '--check-only' to exit script before update is performed.
+  uninstall,            Uninstall Pikonek
+  package,              Install Pikonek Package
+                         Add '--install <packagename>' to install
   -v, version         Show installed versions of Pikonek and Pikonek install
                         Add '-h' for more info on version usage";  
     exit 0
@@ -63,10 +71,11 @@ case "${1}" in
   "-v" | "version"              ) versionFunc "$@";;
 
   # we need to add all arguments that require sudo power to not trigger the * argument
-  "-up" | "updatePikonek"        ) ;;
-  "-a" | "admin"                ) ;;
+  "-up"                          ) ;;
+  "-a"                           ) ;;
   "updatechecker"               ) ;;
   "uninstall"                   ) ;;
+  "package"                     ) ;;
   *                             ) helpFunc;;
 esac
 
@@ -83,8 +92,9 @@ fi
 
 # Handle redirecting to specific functions based on arguments
 case "${1}" in
-  "-up" | "updatePikonek"        ) updatePikonekFunc "$@";;
-  "-a" | "admin"                ) adminFunc "$@";;
+  "-up"                         ) updatePikonekFunc "$@";;
+  "-a"                          ) adminFunc "$@";;
   "updatechecker"               ) updateCheckFunc "$@";;
   "uninstall"                   ) uninstallPikonekFunc "$@";;
+  "package"                     ) installPackage "$@";;
 esac

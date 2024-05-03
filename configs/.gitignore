@@ -5,6 +5,9 @@ ngrok.yaml
 pikonek_dhcp_mapping.yaml
 pikonek_net_mapping.yaml
 pikonek_wpa_mapping.yaml
+pppoe.yaml
+sqm.yaml
+*.tcconfig.json
 pikonek.host
 pikonek.resolv
 pikonekInit.cfg
