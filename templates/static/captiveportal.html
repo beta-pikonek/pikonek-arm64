@@ -1,0 +1,61 @@
+<!--------------------------------------------- CAPTIVE PORTAL TEMPLATE ----------------------------------------->
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="author" content="">
+    <title>Pikonek</title>
+    <!----- DO NOT REMOVE ----->
+    <script defer src="/public/dist/npm.coreui.bundle.js"></script><script defer src="/public/dist/npm.react-dom.bundle.js"></script><script defer src="/public/dist/main.bundle.js"></script>
+    <!----- DO NOT REMOVE ----->
+  </head>
+  <body>
+    <div id="design-captive" class="container">
+      <!----- Start designing here ------>
+      <div class="justify-content-center row">
+        <div class="col-lg-8">
+            <div class="card-group">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="captive">
+                            <div class="text-center mb-4">
+                              <!--------------------------------------------------------------------
+                                If you want to refence an image please upload your image, all uploaded images are in public/portal_image
+                                To select the image please use the path /public/portal_img/<your-image>
+                                --------------------------------------------------------------------->
+                              <img class="text-center" src="/public/img/pi-banner-logo.png" height="100%" width="100%">
+                              <p id="captive-admin" class="text-center"></p>
+                            </div>
+                              <!------- PLEASE INCLUDE THIS AND NEVER REMOVE THIS -------->
+                              <div id="connect"></div>
+                              <!------- PLEASE INCLUDE THIS AND NEVER REMOVE THIS -------->
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+      <div class="col-lg-12">
+          <p class="text-center mt-2">
+              <strong><a href="https://pikonek.com">Powered by PiKonek</a></strong>
+          </p>
+      </div>
+    </div>
+      <!----- End of your design ------>
+    </div>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <!-------- YOUR JAVASCRIPT CODE ------>
+    <script>
+      var captiveAdmin = document.getElementById("captive-admin");
+      var host = window.location.host + '/fh'
+      if (captiveAdmin) {
+        captiveAdmin.innerHTML = `To access your administrator dashboard, Go to ${host}`
+      }
+    </script>
+  </body>
+</html>
